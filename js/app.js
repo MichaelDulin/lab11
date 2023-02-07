@@ -4,7 +4,7 @@
 let myContainer = document.querySelector('section');
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
-let imageThree = document.querySelector('section img:nth-child(3)')
+let imageThree = document.querySelector('section img:nth-child(3)');
 let myButton = document.querySelector('click');
 let numberOfMatchesAllowed = 25;
  let numberOfMatches = 0;

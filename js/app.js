@@ -7,7 +7,7 @@ let img2 = document.querySelector('section img:nth-child(2)');
 let img3 = document.querySelector('section img:nth-child(3)');
 
 let maxChoices = 25;
-let curChoices = 0;
+let curChoices = 0;          // <--- change back to 0 (FOR TESTING)
 let allowedImgCount = 6;
 const state = {
   allItemsArr: [],
@@ -85,12 +85,14 @@ function renderChart() {
         {
           label: '# of Likes',
           data: totalLikesArr,
-          borderWidth: 1
+          borderWidth: 1,
+          backgroundColor: 'RGB(245, 203, 92)'
         },
         {
           label: '# of Views',
           data: totalViewsArr,
-          borderWidth: 1
+          borderWidth: 1,
+          backgroundColor: 'RGB(207, 219, 213)'
         }
       ]
     },

@@ -4,16 +4,18 @@
 
 body {
   font-family: Georgia, 'Times New Roman', Times, serif;
+  background-image: linear-gradient(90deg, #cfdbd5, #333533, #333533, #333533, #cfdbd5);
   background-color: #333533;
   color: #e8eddf;
 }
 
  main h1 {
   color: #f5cb5c;
-  font-size: 40px;
+  text-shadow: 0 0 10px #cfdbd5, 0 0 20px #333533;
+  font-weight: 800;
+  font-size: 60px;
   grid-row-start: 1;
   grid-row-end: 2;
-  margin-left: 12%;
   grid-column-start: 2;
   grid-column-end: 3;
 }
@@ -28,7 +30,7 @@ body {
 
 #results canvas{
   margin-top: 8rem;
-  padding-left: 10rem;
+  padding-left: 9rem;
 }
 
 span {
@@ -66,12 +68,14 @@ main {
 section {
   background-color: #242423;
   grid-column-start: 1;
+  border-radius: 20px;
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 4;
   display: flex;
   justify-content: space-between;
   align-items: flex-start; 
+  box-shadow: 0 6px 20px 0 rgba(207, 219, 213, 0.19);
 }
 
 section img {
@@ -81,11 +85,12 @@ section img {
   width: 200px;
   height: 200px;
   border: 5px solid transparent;
+  border-radius: 20px;
 }
 
 section img:hover {
   cursor: pointer;
-  border:5px solid #f5cb5c;
+  box-shadow: 0 4px 8px 20px rgba(207, 219, 213, 0.2);
 }
 
 section.no-voting img:hover {

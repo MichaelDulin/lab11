@@ -5,14 +5,14 @@ let myContainer = document.querySelector('section');
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
-let myButton = document.querySelector('click');
+let myButton = document.querySelector('#button');
 let numberOfMatchesAllowed = 25;
  let numberOfMatches = 0;
 let allProducts = [];
 
 // constructor functions
 function Store(name, fileExtension = 'jpg'){
-  this.name;
+  this.name = name;
   this.src = `img/${name}.${fileExtension}`;
   this.views = 0;
   this.likes = 0;
@@ -41,6 +41,8 @@ let wineglass = new Store('wine-glass');
 
 // array of products
 allProducts = [bag,banana,bathroom,boots,breakfast,bubblegum,chair,cthulhu,dogduck,dragon,pen,petsweep,scissors,shark,sweep,tauntaun,unicorn,watercan,wineglass];
+
+console.log(allProducts);
 
 function selectRandomProduct(){
   return Math.floor(Math.random() * allProducts.length);
@@ -72,7 +74,9 @@ function renderProducts(){
   allProducts[product1].views++;
   allProducts[product2].views++;
   allProducts[product3].views++;
-  numberOfMatches++;
+  allProducts[product1].likes++;
+  allProducts[product2].likes++;
+  allProducts[product3].likes++;
 }
 
 function renderResults() {
@@ -81,23 +85,28 @@ function renderResults() {
     let li = document.createElement('li');
     li.textContent = `${allProducts[i].name} had ${allProducts[i].views} views and ${allProducts[i].likes} likes.`;
     results.appendChild(li);
+    
   }
 }
 
 // Event Handler
 function handleClick(event) {
   console.log(event.target.alt);
+  numberOfMatches++;
   let clickedProduct = event.target.alt;
   for (let i = 0; i< allProducts.length; i++){
     if (allProducts[i].name === clickedProduct){
       allProducts[i].likes++;
+      
     }
   }
-  if (numberOfMatches<numberOfMatchesAllowed) {
+  if (numberOfMatches < numberOfMatchesAllowed) {
     renderProducts();
+    
   } else {
     myContainer.removeEventListener('click', handleClick);
-    myButton.addEventListener('click', renderProducts);
+    myButton.addEventListener('click', renderResults);
+  
   }
 }
 

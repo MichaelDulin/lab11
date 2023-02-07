@@ -19,18 +19,22 @@ body {
 }
 
 #results {
-  display: flex;
-  flex-direction: column;
+  padding: 2rem;
+  width: 100%;
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 4;
   grid-row-start: 4;
-  grid-row-end: 4;
+}
+
+#results canvas{
+  margin-top: 8rem;
+  padding-left: 10rem;
 }
 
 span {
   display: flex;
   flex-direction: column;
-  grid-column-start: 2;
+  grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 4;
   grid-row-end: 4;
@@ -49,14 +53,7 @@ span p{
   margin-bottom: 20px;
 }
 
-#results div {
-  font-size: 28px;
-  text-align: center;
-  font-weight:400;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #f5cb5c;
-  margin-bottom: 20px;
-}
+
 
 main {
   width: 1024px;
@@ -94,38 +91,4 @@ section img:hover {
 section.no-voting img:hover {
   border: 5px solid transparent;
   cursor: none;
-}
-
-ul {
-  display: flex;
-  flex-direction: column;
-}
-
-ul li {
-  font-size: 16px;
-  margin: 20px;
-  line-height: 2;
-}
-
-/* -- button -- */
-section + div {
-  background-color: #242423;
-  color: #f5cb5c;
-  padding: .5rem 1rem;
-  width: max-content;
-  height: max-content;
-  font-size: .8rem;
-  margin: 1rem;
-  pointer-events: none;
-}
-/* Demo stretch goal: */
-section + div.clicks-allowed {
-  background-color: #242423;
-  color: #cfdbd5;
-  cursor: pointer;
-  pointer-events: auto;
-}
-section + div.clicks-allowed:hover {
-  background-color: #f5cb5c;
-  color:#242423;
 }

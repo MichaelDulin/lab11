@@ -1,7 +1,6 @@
 'use strict';
 
 let itemContainer = document.querySelector('section');
-let resultButton = document.querySelector('section + div');
 
 let img1 = document.querySelector('section img:first-child');
 let img2 = document.querySelector('section img:nth-child(2)');
@@ -9,9 +8,10 @@ let img3 = document.querySelector('section img:nth-child(3)');
 
 let maxChoices = 25;
 let curChoices = 0;
-
+let allowedImgCount = 6;
 const state = {
   allItemsArr: [],
+  allowedImgChoices: [],
 };
 
 function Item(name, src){
@@ -19,23 +19,21 @@ function Item(name, src){
   this.src = src;
   this.views = 0;
   this.likes = 0;
-  this.ref = 0;
 }
 
 function renderItems() {
-  let choice1 = randomItem();
-  let choice2 = randomItem();
-  let choice3 = randomItem();
   function randomItem () {
     return Math.floor(Math.random() * state.allItemsArr.length);
   }
-  while (choice1 === choice2 || choice2 === choice3 || choice3 === choice1) {
-    if (choice1 === choice2 || choice1 === choice3){
-      choice1 = randomItem();
-    } else if(choice2 === choice3) {
-      choice2 = randomItem();
+  while (state.allowedImgChoices.length < allowedImgCount) {
+    let randomImg = randomItem();
+    if (!state.allowedImgChoices.includes(randomImg)) {
+      state.allowedImgChoices.push(randomImg);
     }
   }
+  let choice1 = state.allowedImgChoices.shift();
+  let choice2 = state.allowedImgChoices.shift();
+  let choice3 = state.allowedImgChoices.shift();
   img1.src = state.allItemsArr[choice1].src;
   img2.src = state.allItemsArr[choice2].src;
   img3.src = state.allItemsArr[choice3].src;
@@ -47,15 +45,6 @@ function renderItems() {
   state.allItemsArr[choice3].views++;
 }
 
-function renderResults() {
-  let ul = document.querySelector('ul');
-  for (let i = 0; i < state.allItemsArr.length; i++) {
-    let li = document.createElement('li');
-    li.textContent = `${state.allItemsArr[i].name}: ${state.allItemsArr[i].views} views and ${state.allItemsArr[i].likes} likes`;
-    ul.appendChild(li);
-  }
-}
-
 function handleItemClick(event) {
   if (event.target === itemContainer){
     alert('Try clicking an image!');
@@ -65,16 +54,56 @@ function handleItemClick(event) {
   for (let i = 0; i < state.allItemsArr.length; i++) {
     if (state.allItemsArr[i].name === likedItem) {
       state.allItemsArr[i].likes++;
+      break;
     }
   }
   if (curChoices < maxChoices) {
     renderItems();
   } else {
+    renderChart();
     itemContainer.removeEventListener('click', handleItemClick);
-    resultButton.addEventListener('click', renderResults);
-    resultButton.className = 'clicks-allowed';
     itemContainer.className = 'no-voting';
   }
+}
+
+function renderChart() {
+  let totalNamesArr = [];
+  let totalViewsArr = [];
+  let totalLikesArr = [];
+  for (let i = 0; i < state.allItemsArr.length; i++) {
+    totalNamesArr.push(state.allItemsArr[i].name);
+    totalViewsArr.push(state.allItemsArr[i].views);
+    totalLikesArr.push(state.allItemsArr[i].likes);
+  }
+  const ctx = document.getElementById('myChart');
+
+  let config = {
+    type: 'bar',
+    data: {
+      labels: totalNamesArr,
+      datasets: [
+        {
+          label: '# of Likes',
+          data: totalLikesArr,
+          borderWidth: 1
+        },
+        {
+          label: '# of Views',
+          data: totalViewsArr,
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+
+  new Chart(ctx, config);
 }
 
 let bag = new Item('Bag', './img/bag.jpg');
@@ -102,39 +131,4 @@ state.allItemsArr.push (bag, banana, bathroom, boots, breakfast, bubblegum, chai
 renderItems();
 
 itemContainer.addEventListener('click', handleItemClick);
-
-function renderChart() {
-  let totalNamesArr = [];
-  let totalViewsArr = [];
-  let totalLikesArr = [];
-  for (let i = 0; i < allItemsArr.length; i++) {
-    totalNamesArr.push(allItemsArr[i].name);
-    totalViewsArr.push(allItemsArr[i].views);
-    totalLikesArr.push(allItemsArr[i].likes);
-  }
-
-  const ctx = document.getElementById('myChart');
-  
-  new config = {
-    type: 'bar',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], // names
-      datasets: [
-        {
-          label: '# of votes',
-          data: [12, 19, 3, 5, 2, 3], // data shown (likes) or (views)
-          borderwidth: 1
-        }
-      ]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  }
-
-}
 

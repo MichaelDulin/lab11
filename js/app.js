@@ -19,6 +19,7 @@ function Item(name, src){
   this.src = src;
   this.views = 0;
   this.likes = 0;
+  this.ref = 0;
 }
 
 function renderItems() {
@@ -101,3 +102,39 @@ state.allItemsArr.push (bag, banana, bathroom, boots, breakfast, bubblegum, chai
 renderItems();
 
 itemContainer.addEventListener('click', handleItemClick);
+
+function renderChart() {
+  let totalNamesArr = [];
+  let totalViewsArr = [];
+  let totalLikesArr = [];
+  for (let i = 0; i < allItemsArr.length; i++) {
+    totalNamesArr.push(allItemsArr[i].name);
+    totalViewsArr.push(allItemsArr[i].views);
+    totalLikesArr.push(allItemsArr[i].likes);
+  }
+
+  const ctx = document.getElementById('myChart');
+  
+  new config = {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], // names
+      datasets: [
+        {
+          label: '# of votes',
+          data: [12, 19, 3, 5, 2, 3], // data shown (likes) or (views)
+          borderwidth: 1
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  }
+
+}
+

@@ -4,15 +4,57 @@
 
 body {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  background-color: cornsilk;
-  color: saddlebrown;
+  background-color: #333533;
+  color: #e8eddf;
 }
 
-h1 {
-  font-size: 5rem;
-  color: rosybrown;
-  line-height: .8;
-  margin: 3rem 0 1rem;
+ main h1 {
+  color: #f5cb5c;
+  font-size: 40px;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin-left: 12%;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+#results {
+  display: flex;
+  flex-direction: column;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 4;
+}
+
+span {
+  display: flex;
+  flex-direction: column;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 4;
+}
+
+span p{
+  font-size: 22px;
+  padding-top: 15px;
+  text-align: center;
+  font-weight:400;
+  margin-top: 20px;
+  padding: 10px;
+  border-bottom: 2px solid #f5cb5c;
+  border-top: 2px solid #f5cb5c;
+  margin-bottom: 20px;
+}
+
+#results div {
+  font-size: 28px;
+  text-align: center;
+  font-weight:400;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f5cb5c;
+  margin-bottom: 20px;
 }
 
 main {
@@ -23,46 +65,66 @@ main {
   grid-template-rows: 6.5rem 10rem 20rem 40%;
 }
 
-#siteLogo {
-  width: 250px;
-  z-index: 2;
-}
-
 section {
-  /* This element will be a grid item, but also a flex container */
-  background-color: rgba(211, 187, 176, 0.3);
-  padding: 2rem;
-  /* The numbers below refer to the line numbers, not the columns or rows */
+  background-color: #242423;
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 4;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start; 
 }
 
 section img {
-  width: 460px;
-  max-height: 26rem;
-  border: 5dpx solid transparent;
+  display: inline-block;
+  margin: 4rem;
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  border: 5px solid transparent;
 }
 
 section img:hover {
   cursor: pointer;
-  border:5px solid rgb(169, 108, 28);
+  border:5px solid #f5cb5c;
+}
+
+section.no-voting img:hover {
+  border: 5px solid transparent;
+  cursor: none;
 }
 
 ul {
-  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+ul li {
+  font-size: 16px;
+  margin: 20px;
+  line-height: 2;
 }
 
 /* -- button -- */
 section + div {
-  background-color: rgba(128, 128, 128, 0.734);
-  color: lightgrey;
+  background-color: #242423;
+  color: #f5cb5c;
   padding: .5rem 1rem;
   width: max-content;
   height: max-content;
   font-size: .8rem;
   margin: 1rem;
+  pointer-events: none;
+}
+/* Demo stretch goal: */
+section + div.clicks-allowed {
+  background-color: #242423;
+  color: #cfdbd5;
+  cursor: pointer;
+  pointer-events: auto;
+}
+section + div.clicks-allowed:hover {
+  background-color: #f5cb5c;
+  color:#242423;
 }

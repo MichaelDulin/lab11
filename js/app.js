@@ -108,6 +108,30 @@ function renderChart() {
   new Chart(ctx, config);
 }
 
+// Function to store our item (JSON.stringify())
+function storeItem(itemBeingStored) {
+  let stringifiedItem = JSON.stringify(itemBeingStored);
+  localStorage.setItem('item', stringifiedItem);
+}
+
+// Function to get our item (consider parsing through allItemArr) 
+function getItem() {
+  let prevStoredItem = localStorage.getItem('item');
+  if (prevStoredItem) {
+    let parsedItem = JSON.parse();
+    return parsedItem;
+  }
+}
+
+// implement: parsing through allItemArr to store individual objects within this array
+// 
+
+// Function to parse items back into objects (JSON.parse())
+let unstringify = new Item(
+
+)
+
+
 let bag = new Item('Bag', './img/bag.jpg');
 let banana = new Item('Banana', './img/banana.jpg');
 let bathroom = new Item('Bathroom', './img/bathroom.jpg');

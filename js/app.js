@@ -9,6 +9,7 @@ let img3 = document.querySelector('section img:nth-child(3)');
 let maxChoices = 25;
 let curChoices = 0;          // <--- change back to 0 (FOR TESTING)
 let allowedImgCount = 6;
+
 const state = {
   allItemsArr: [],
   allowedImgChoices: [],

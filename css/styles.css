@@ -15,7 +15,7 @@ main h1 {
   font-size: 50px;
   text-align: center;
   margin-top: 10rem;
-
+  
 
 }
 
@@ -25,6 +25,8 @@ section {
   justify-content: center;
   align-items: center;
   margin-top: 8rem;
+  border-width: 3px;
+  border-color: #009CBC;
   
 
 }
@@ -38,6 +40,7 @@ section img{
   border: 2px solid transparent;
   justify-content: space-between;
   align-items: flex-start;
+  
 
 }
 

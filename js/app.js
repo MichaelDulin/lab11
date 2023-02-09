@@ -9,6 +9,7 @@ let img3 = document.querySelector('section img:nth-child(3)');
 let maxChoices = 25;
 let curChoices = 0;          // <--- change back to 0 (FOR TESTING)
 let allowedImgCount = 6;
+
 const state = {
   allItemsArr: [],
   allowedImgChoices: [],
@@ -61,6 +62,7 @@ function handleItemClick(event) {
     renderItems();
   } else {
     renderChart();
+    storeItem(state.allItemsArr);
     itemContainer.removeEventListener('click', handleItemClick);
     itemContainer.className = 'no-voting';
   }
@@ -108,6 +110,21 @@ function renderChart() {
   new Chart(ctx, config);
 }
 
+
+function storeItem(itemBeingStored) {
+  let stringifiedItem = JSON.stringify(itemBeingStored);
+  localStorage.setItem('item', stringifiedItem);
+}
+
+
+function getItem() {
+  let prevStoredItem = localStorage.getItem('item');
+  if (prevStoredItem) {
+    let parsedItem = JSON.parse(prevStoredItem);
+    return parsedItem;
+  }
+}
+
 let bag = new Item('Bag', './img/bag.jpg');
 let banana = new Item('Banana', './img/banana.jpg');
 let bathroom = new Item('Bathroom', './img/bathroom.jpg');
@@ -129,6 +146,15 @@ let waterCan = new Item('Water Can', './img/water-can.jpg');
 let wineGlass = new Item('Wine Glass', './img/wine-glass.jpg');
 state.allItemsArr.push (bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark,sweep, tauntaun, unicorn, waterCan, wineGlass);
 
+let storedItems = getItem();
+console.log(storedItems);
+if (storedItems) {
+  for (let i = 0; i < state.allItemsArr.length; i++) {
+    state.allItemsArr[i].views = storedItems[i].views;
+    state.allItemsArr[i].likes = storedItems[i].likes;
+  }
+  console.log(state.allItemsArr);
+}
 
 renderItems();
 
